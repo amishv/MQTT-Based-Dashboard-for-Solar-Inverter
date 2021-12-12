@@ -64,3 +64,15 @@ dkms.conf
 **/compile_commands.json
 
 build/**/*
+battery.png
+.gitignore
+rawcmd.c
+SolarDashboard
+SolarDashboard.glade.vert
+SolarDashboard.glade~
+SolarDashboard.png
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+.gitignore
