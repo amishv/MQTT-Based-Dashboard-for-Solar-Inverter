@@ -64,6 +64,7 @@ dkms.conf
 **/compile_commands.json
 
 build/**/*
+<<<<<<< HEAD
 battery.png
 .gitignore
 rawcmd.c
@@ -75,4 +76,6 @@ SolarDashboard.png
 .vscode/launch.json
 .vscode/settings.json
 .vscode/tasks.json
+=======
+>>>>>>> eba1d4b350bf555825caf99d402a3a2aaf1ff944
 .gitignore
