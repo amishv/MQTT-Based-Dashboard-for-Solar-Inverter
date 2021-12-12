@@ -1,0 +1,104 @@
+window {
+  min-height: 480px;
+  min-width: 640px;
+  background-color: rgb(3, 12, 12);
+}
+.label {
+  color: rgb(255, 255, 255);
+  background-color: rgb(4, 17, 17);
+  border-width: 3px;
+  text-decoration-color: rgb(2, 2, 2);
+}
+.static_label {
+  color: rgb(247, 248, 247);
+  font-size: x-large;
+  background-color:  rgb(4, 17, 17);
+  border: rgb(114, 245, 8);
+  border-width: 1px;
+}
+.dynamic_label {
+  color: rgb(247, 248, 247);
+  font-size: 26px;
+  background-color:  rgb(4, 17, 7);
+  border: rgb(114, 245, 8);
+  border: dashed;
+  border-width: 1px;
+}
+.label_heading {
+  color: rgb(247, 248, 247);
+  font-size: 26px;
+  background-color:  rgb(4, 17, 7);
+  border: rgb(114, 245, 8);
+  border: none;
+  border-width: 1px;
+}
+#label_red {
+  background-color: red;
+}
+#label_green {
+  background-color: green;
+}
+#label_yellow{
+  background-color: yellow;
+  color: rgb(8, 8, 8);
+}
+.meter_label {
+  font-weight: bold;
+}
+button {
+  color: rgb(230, 10, 10);
+  background: rgb(4, 17, 7);
+  text-shadow: 1px 1px 5px black;
+  font-size: 8pt;
+  border: rgb(13, 14, 10);
+  border-radius: 0px;
+  box-shadow: 0px 0px 5px black;
+}
+button:hover {
+background: #3085a9;
+color:green;
+}
+.meter {
+  background-color: rgb(4, 17, 17);
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(26, 116, 3);
+  margin-top: 3px;
+}
+.window {
+  background-color: rgb(2, 12, 12);
+  border-width: 13px;
+  border-color: rgb(4, 92, 19);
+}
+progress,trough  {
+  font-size: 25pt;
+  color: rgb(0, 247, 255);
+  min-height: 15px;
+}
+.battery_progress, trough {
+  background-image:url("battery.png");
+  color: rgb(255, 0, 34);
+  border: 1px solid rgba(23, 165, 247, 0);
+  border-radius: 2px;
+}
+
+.status_bar{
+  background-color: rgb(120, 124, 121);
+}
+.status_bar_widget{
+  background-color: rgb(2, 3, 0);
+  color: rgb(255, 255, 255);
+  font-size: 8pt;
+  border: solid;
+  border-width: 3px;
+  border-color: rgb(0, 8, 2);
+}
+.status_bar_button {
+  padding-top: 0px; 
+  padding-bottom: 0px; 
+  margin-bottom: 0px;
+  color: rgb(230, 10, 10);
+  background: rgb(4, 17, 7);
+  font-size: 8pt;
+  border: rgb(13, 14, 10);
+}

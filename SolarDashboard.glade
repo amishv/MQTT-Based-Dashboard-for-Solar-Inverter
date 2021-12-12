@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="halign">end</property>
+    <property name="valign">center</property>
+    <property name="stock">gtk-quit</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkAdjustment" id="invTempVal">
+    <property name="upper">100</property>
+    <property name="value">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="loadPct">
+    <property name="upper">100</property>
+    <property name="value">55</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="mpptTempVal">
+    <property name="upper">100</property>
+    <property name="value">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="pvPwrVal">
+    <property name="upper">4000</property>
+    <property name="value">4000</property>
+    <property name="step_increment">25</property>
+    <property name="page_increment">100</property>
+    <signal name="changed" handler="on_adjustment_value_changed" swapped="no"/>
+    <signal name="value-changed" handler="on_adjustment_value_changed" swapped="no"/>
+  </object>
+  <object class="GtkAdjustment" id="pvVoltVal">
+    <property name="upper">100</property>
+    <property name="value">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="changed" handler="on_adjustment_value_changed" swapped="no"/>
+    <signal name="value-changed" handler="on_adjustment_value_changed" swapped="no"/>
+  </object>
+  <object class="GtkWindow" id="mainWindow">
+    <property name="name">window</property>
+    <property name="visible">True</property>
+    <property name="app_paintable">True</property>
+    <property name="can_focus">True</property>
+    <property name="has_focus">True</property>
+    <property name="is_focus">True</property>
+    <property name="can_default">True</property>
+    <property name="has_default">True</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-always</property>
+    <property name="default_width">-1</property>
+    <property name="default_height">-1</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="gravity">center</property>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkGrid" id="MainGrid">
+        <property name="name">window</property>
+        <property name="visible">True</property>
+        <property name="app_paintable">True</property>
+        <property name="can_focus">False</property>
+        <property name="can_default">True</property>
+        <property name="has_default">True</property>
+        <property name="receives_default">True</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="column_homogeneous">True</property>
+        <child>
+          <object class="GtkGrid" id="grid1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel" id="gridVoltage">
+                <property name="name">gridVoltage</property>
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">end</property>
+                <property name="margin_top">25</property>
+                <property name="label" translatable="yes">---.-</property>
+                <property name="justify">center</property>
+                <property name="width_chars">10</property>
+                <property name="single_line_mode">True</property>
+                <property name="max_width_chars">10</property>
+                <property name="track_visited_links">False</property>
+                <property name="lines">1</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
+                <attributes>
+                  <attribute name="font-desc" value="Ubuntu Mono Bold 28"/>
+                </attributes>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">start</property>
+                <property name="label" translatable="yes">Grid Voltage</property>
+                <property name="justify">center</property>
+                <property name="width_chars">8</property>
+                <property name="max_width_chars">8</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="gridFreq">
+                <property name="name">gridFreq</property>
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="margin_top">15</property>
+                <property name="label" translatable="yes">--.-</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <property name="single_line_mode">True</property>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">end</property>
+                <property name="label" translatable="yes">Grid Frequency</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <property name="width_chars">11</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Inverter Frequency</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="inverterFreq">
+                <property name="name">inverterFreq</property>
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="margin_top">15</property>
+                <property name="label" translatable="yes">--.-</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="inverterVoltage">
+                <property name="name">inverterVoltage</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="margin_top">25</property>
+                <property name="label" translatable="yes">---.-</property>
+                <property name="justify">center</property>
+                <property name="width_chars">10</property>
+                <property name="single_line_mode">True</property>
+                <property name="max_width_chars">10</property>
+                <property name="track_visited_links">False</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
+                <attributes>
+                  <attribute name="font-desc" value="Ubuntu Mono Bold 28"/>
+                  <attribute name="foreground" value="#4949a8a83535"/>
+                </attributes>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Inverter Voltage</property>
+                <property name="justify">right</property>
+                <property name="single_line_mode">True</property>
+                <property name="max_width_chars">19</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="pvPw">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <property name="baseline_position">bottom</property>
+            <child>
+              <object class="GtkDrawingArea" id="pvPwr">
+                <property name="name">pvPwr</property>
+                <property name="height_request">-1</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <signal name="destroy" handler="windowDelete" object="mainWindow" swapped="no"/>
+                <signal name="destroy-event" handler="windowDelete" object="mainWindow" swapped="no"/>
+                <signal name="draw" handler="on_drawingarea_draw" object="pvPwrVal" swapped="no"/>
+                <style>
+                  <class name="meter"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="pvPwrDisp">
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Solar Power Generated</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">PV Power</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="meter_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScale" id="pvPwrScale">
+                <property name="width_request">0</property>
+                <property name="height_request">0</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="adjustment">pvPwrVal</property>
+                <property name="restrict_to_fill_level">False</property>
+                <property name="round_digits">1</property>
+                <property name="draw_value">False</property>
+                <property name="has_origin">False</property>
+                <signal name="value-changed" handler="on_scale_value_changed" object="pvPwr" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <style>
+              <class name="meter"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="pvVolt">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <property name="baseline_position">bottom</property>
+            <child>
+              <object class="GtkDrawingArea" id="pvVolts">
+                <property name="name">pvVolts</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <signal name="draw" handler="on_drawingarea_draw" object="pvVoltVal" swapped="no"/>
+                <style>
+                  <class name="meter"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="pvVoltDisp">
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">PV Voltage</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="meter_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScale" id="pvVoltScale">
+                <property name="width_request">0</property>
+                <property name="height_request">0</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="orientation">vertical</property>
+                <property name="adjustment">pvVoltVal</property>
+                <property name="restrict_to_fill_level">False</property>
+                <property name="round_digits">1</property>
+                <property name="draw_value">False</property>
+                <property name="has_origin">False</property>
+                <signal name="value-changed" handler="on_scale_value_changed" object="pvVolts" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <style>
+              <class name="meter"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="mpptTempBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <property name="baseline_position">bottom</property>
+            <child>
+              <object class="GtkDrawingArea" id="mpptTemp">
+                <property name="name">mpptTemp</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <signal name="draw" handler="on_drawingarea_draw" object="mpptTempVal" swapped="no"/>
+                <style>
+                  <class name="meter"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="mpptTempDisp">
+                <property name="width_request">100</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">MPPT Temp</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="meter_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScale">
+                <property name="width_request">0</property>
+                <property name="height_request">0</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="adjustment">mpptTempVal</property>
+                <property name="restrict_to_fill_level">False</property>
+                <property name="round_digits">1</property>
+                <property name="draw_value">False</property>
+                <property name="has_origin">False</property>
+                <signal name="value-changed" handler="on_scale_value_changed" object="mpptTemp" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <style>
+              <class name="meter"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="inverterTempBox">
+            <property name="width_request">150</property>
+            <property name="height_request">125</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkDrawingArea" id="inverterTemp">
+                <property name="name">inverterTemp</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <signal name="draw" handler="on_drawingarea_draw" object="invTempVal" swapped="no"/>
+                <style>
+                  <class name="meter"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="invTempDisp">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Inverter Temp</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="meter_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScale">
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <property name="adjustment">invTempVal</property>
+                <property name="restrict_to_fill_level">False</property>
+                <property name="round_digits">1</property>
+                <property name="draw_value">False</property>
+                <property name="has_origin">False</property>
+                <signal name="value-changed" handler="on_scale_value_changed" object="inverterTemp" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <style>
+              <class name="meter"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">12</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel" id="battVolts">
+                <property name="name">battVolts</property>
+                <property name="width_request">70</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes">--.-</property>
+                <property name="justify">center</property>
+                <property name="track_visited_links">False</property>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="battCurrent">
+                <property name="name">battCurrent</property>
+                <property name="width_request">70</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes">--.-</property>
+                <property name="track_visited_links">False</property>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkProgressBar" id="battPercent">
+                <property name="name">battPercent</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="app_paintable">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="margin_top">5</property>
+                <property name="margin_bottom">11</property>
+                <property name="show_text">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Voltage</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Current</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Battery</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="label_heading"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_top">12</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Load</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="label_heading"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Actual (W)</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Apparent</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="loadAct">
+                <property name="width_request">70</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">----</property>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="loadApparent">
+                <property name="width_request">70</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">----</property>
+                <style>
+                  <class name="dynamic_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkProgressBar" id="loadPercent">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="margin_top">5</property>
+                <property name="margin_bottom">11</property>
+                <property name="fraction">0.55000000000000004</property>
+                <property name="show_text">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+                <property name="width">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">3</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="width_request">-1</property>
+            <property name="height_request">-1</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">4</property>
+            <property name="baseline_position">bottom</property>
+            <child>
+              <object class="GtkLabel" id="gridState">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes">---</property>
+                <property name="use_markup">True</property>
+                <style>
+                  <class name="status_bar_widget"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkLabel" id="InverterMode">
+                <property name="name">InverterMode</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes">Waiting</property>
+                <property name="use_markup">True</property>
+                <property name="justify">right</property>
+                <style>
+                  <class name="status_bar_widget"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">12</property>
+              </packing>
+            </child>
+            <child type="center">
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkButton" id="quit_button">
+                <property name="name">quit_button</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="has_default">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="image">image1</property>
+                <property name="relief">none</property>
+                <property name="image_position">right</property>
+                <property name="always_show_image">True</property>
+                <style>
+                  <class name="status_bar_button"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="pack_type">end</property>
+                <property name="position">11</property>
+              </packing>
+            </child>
+            <style>
+              <class name="status_bar"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <style>
+          <class name="window"/>
+        </style>
+      </object>
+    </child>
+    <style>
+      <class name="window"/>
+    </style>
+  </object>
+  <object class="GtkSizeGroup">
+    <property name="mode">both</property>
+    <property name="ignore_hidden">True</property>
+    <widgets>
+      <widget name="mainWindow"/>
+    </widgets>
+  </object>
+</interface>
