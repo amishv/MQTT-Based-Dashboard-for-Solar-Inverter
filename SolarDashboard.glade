@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.22.2 
+
+The MIT License (MIT)
+
+Copyright (c) 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Author: Amish Vishwakarma
+
+-->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <!-- interface-css-provider-path SolarDashboard.css -->
+  <!-- interface-license-type mit -->
+  <!-- interface-name SolarDashboard -->
+  <!-- interface-description Dashboard for solar invertor using Home Assistant MQTT sensors -->
+  <!-- interface-authors Amish Vishwakarma -->
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -12,25 +43,25 @@
   </object>
   <object class="GtkAdjustment" id="invTempVal">
     <property name="upper">100</property>
-    <property name="value">100</property>
+    <property name="value">50</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="loadPct">
     <property name="upper">100</property>
-    <property name="value">55</property>
+    <property name="value">50</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="mpptTempVal">
     <property name="upper">100</property>
-    <property name="value">100</property>
+    <property name="value">50</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="pvPwrVal">
     <property name="upper">4000</property>
-    <property name="value">4000</property>
+    <property name="value">2000</property>
     <property name="step_increment">25</property>
     <property name="page_increment">100</property>
     <signal name="changed" handler="on_adjustment_value_changed" swapped="no"/>
@@ -38,7 +69,7 @@
   </object>
   <object class="GtkAdjustment" id="pvVoltVal">
     <property name="upper">100</property>
-    <property name="value">100</property>
+    <property name="value">50</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
     <signal name="changed" handler="on_adjustment_value_changed" swapped="no"/>
@@ -46,6 +77,8 @@
   </object>
   <object class="GtkWindow" id="mainWindow">
     <property name="name">window</property>
+    <property name="width_request">-1</property>
+    <property name="height_request">-1</property>
     <property name="visible">True</property>
     <property name="app_paintable">True</property>
     <property name="can_focus">True</property>
@@ -53,20 +86,23 @@
     <property name="is_focus">True</property>
     <property name="can_default">True</property>
     <property name="has_default">True</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
+    <property name="hexpand">False</property>
+    <property name="vexpand">False</property>
     <property name="resizable">False</property>
     <property name="window_position">center-always</property>
     <property name="default_width">-1</property>
     <property name="default_height">-1</property>
     <property name="destroy_with_parent">True</property>
     <property name="gravity">center</property>
+    <property name="startup_id">SolarDashboard</property>
     <child type="titlebar">
       <placeholder/>
     </child>
     <child>
       <object class="GtkGrid" id="MainGrid">
         <property name="name">window</property>
+        <property name="width_request">-1</property>
+        <property name="height_request">-1</property>
         <property name="visible">True</property>
         <property name="app_paintable">True</property>
         <property name="can_focus">False</property>
@@ -86,22 +122,21 @@
             <child>
               <object class="GtkLabel" id="gridVoltage">
                 <property name="name">gridVoltage</property>
-                <property name="width_request">100</property>
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">end</property>
-                <property name="margin_top">25</property>
+                <property name="margin_top">5</property>
                 <property name="label" translatable="yes">---.-</property>
                 <property name="justify">center</property>
-                <property name="width_chars">10</property>
+                <property name="width_chars">5</property>
                 <property name="single_line_mode">True</property>
-                <property name="max_width_chars">10</property>
+                <property name="max_width_chars">8</property>
                 <property name="track_visited_links">False</property>
                 <property name="lines">1</property>
-                <property name="xalign">0.5</property>
-                <property name="yalign">0.5</property>
+                <property name="xalign">0.25</property>
+                <property name="yalign">0.25</property>
                 <attributes>
                   <attribute name="font-desc" value="Ubuntu Mono Bold 28"/>
                 </attributes>
@@ -135,18 +170,25 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="gridFreq">
-                <property name="name">gridFreq</property>
-                <property name="width_request">100</property>
+              <object class="GtkLabel" id="inverterVoltage">
+                <property name="name">inverterVoltage</property>
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="margin_top">15</property>
-                <property name="label" translatable="yes">--.-</property>
-                <property name="use_markup">True</property>
+                <property name="margin_top">5</property>
+                <property name="label" translatable="yes">---.-</property>
                 <property name="justify">center</property>
-                <property name="single_line_mode">True</property>
+                <property name="width_chars">5</property>
+                <property name="max_width_chars">8</property>
+                <property name="track_visited_links">False</property>
+                <property name="xalign">0.25</property>
+                <property name="yalign">0.25</property>
+                <attributes>
+                  <attribute name="font-desc" value="Ubuntu Mono Bold 28"/>
+                  <attribute name="foreground" value="#4949a8a83535"/>
+                </attributes>
                 <style>
                   <class name="dynamic_label"/>
                 </style>
@@ -154,6 +196,54 @@
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Inverter</property>
+                <property name="justify">right</property>
+                <property name="single_line_mode">True</property>
+                <property name="max_width_chars">19</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="column_homogeneous">True</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Inverter</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <style>
+                  <class name="static_label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
@@ -173,81 +263,25 @@
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">3</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkGrid" id="grid2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="column_homogeneous">True</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="label" translatable="yes">Inverter Frequency</property>
-                <property name="use_markup">True</property>
-                <property name="justify">center</property>
-                <style>
-                  <class name="static_label"/>
-                </style>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">3</property>
+                <property name="top_attach">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="inverterFreq">
                 <property name="name">inverterFreq</property>
-                <property name="width_request">100</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="margin_top">15</property>
+                <property name="margin_left">2</property>
+                <property name="margin_right">2</property>
+                <property name="margin_top">5</property>
                 <property name="label" translatable="yes">--.-</property>
                 <property name="use_markup">True</property>
                 <property name="justify">center</property>
-                <style>
-                  <class name="dynamic_label"/>
-                </style>
-              </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="inverterVoltage">
-                <property name="name">inverterVoltage</property>
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="margin_top">25</property>
-                <property name="label" translatable="yes">---.-</property>
-                <property name="justify">center</property>
-                <property name="width_chars">10</property>
-                <property name="single_line_mode">True</property>
-                <property name="max_width_chars">10</property>
-                <property name="track_visited_links">False</property>
+                <property name="width_chars">4</property>
+                <property name="max_width_chars">6</property>
                 <property name="xalign">0.5</property>
                 <property name="yalign">0.5</property>
-                <attributes>
-                  <attribute name="font-desc" value="Ubuntu Mono Bold 28"/>
-                  <attribute name="foreground" value="#4949a8a83535"/>
-                </attributes>
                 <style>
                   <class name="dynamic_label"/>
                 </style>
@@ -258,27 +292,35 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="gridFreq">
+                <property name="name">gridFreq</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
-                <property name="label" translatable="yes">Inverter Voltage</property>
-                <property name="justify">right</property>
+                <property name="margin_left">2</property>
+                <property name="margin_right">2</property>
+                <property name="margin_top">5</property>
+                <property name="label" translatable="yes">--.-</property>
+                <property name="use_markup">True</property>
+                <property name="justify">center</property>
+                <property name="width_chars">4</property>
                 <property name="single_line_mode">True</property>
-                <property name="max_width_chars">19</property>
+                <property name="max_width_chars">6</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
                 <style>
-                  <class name="static_label"/>
+                  <class name="dynamic_label"/>
                 </style>
               </object>
               <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">1</property>
+                <property name="top_attach">2</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
+            <property name="left_attach">3</property>
+            <property name="top_attach">0</property>
           </packing>
         </child>
         <child>
@@ -336,6 +378,8 @@
                 <property name="height_request">0</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="orientation">vertical</property>
                 <property name="adjustment">pvPwrVal</property>
                 <property name="restrict_to_fill_level">False</property>
@@ -506,8 +550,8 @@
             </style>
           </object>
           <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">0</property>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
           </packing>
         </child>
         <child>
@@ -577,25 +621,23 @@
             </style>
           </object>
           <packing>
-            <property name="left_attach">3</property>
-            <property name="top_attach">0</property>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
           </packing>
         </child>
         <child>
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">12</property>
+            <property name="margin_top">5</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkLabel" id="battVolts">
                 <property name="name">battVolts</property>
-                <property name="width_request">70</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="label" translatable="yes">--.-</property>
                 <property name="justify">center</property>
@@ -612,10 +654,8 @@
             <child>
               <object class="GtkLabel" id="battCurrent">
                 <property name="name">battCurrent</property>
-                <property name="width_request">70</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="label" translatable="yes">--.-</property>
                 <property name="track_visited_links">False</property>
@@ -636,9 +676,13 @@
                 <property name="app_paintable">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">11</property>
+                <property name="valign">center</property>
+                <property name="margin_top">2</property>
+                <property name="margin_bottom">2</property>
                 <property name="show_text">True</property>
+                <style>
+                  <class name="battery_progress"/>
+                </style>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -702,7 +746,7 @@
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">12</property>
+            <property name="margin_top">5</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="column_homogeneous">True</property>
@@ -754,10 +798,8 @@
             </child>
             <child>
               <object class="GtkLabel" id="loadAct">
-                <property name="width_request">70</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">center</property>
                 <property name="label" translatable="yes">----</property>
                 <style>
                   <class name="dynamic_label"/>
@@ -770,10 +812,8 @@
             </child>
             <child>
               <object class="GtkLabel" id="loadApparent">
-                <property name="width_request">70</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">center</property>
                 <property name="label" translatable="yes">----</property>
                 <style>
                   <class name="dynamic_label"/>
@@ -790,8 +830,9 @@
                 <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">11</property>
+                <property name="valign">center</property>
+                <property name="margin_top">2</property>
+                <property name="margin_bottom">2</property>
                 <property name="fraction">0.55000000000000004</property>
                 <property name="show_text">True</property>
               </object>

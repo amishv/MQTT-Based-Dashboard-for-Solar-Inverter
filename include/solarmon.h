@@ -12,7 +12,8 @@
 #include <MQTTClient.h>
 
 //#define ADDRESS     "tcp://your_mqtt_broker.local:1883"
-#define ADDRESS     "tcp://yo.ur.mq.tt:1883"
+//#define ADDRESS     "tcp://yo.ur.mq.tt:1883"
+#define ADDRESS     "tcp://192.168.20.130:1883"
 #define CLIENTID "SolarmonDashboard"
 
 #define RAW_CMD_TOPIC "homeassistant/raw_command"
