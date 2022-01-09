@@ -10,6 +10,8 @@ void *mqtt_main(void *);
 void quit_mainMQTT(void);
 gboolean time_handler(gpointer *);
 
+GtkApplication *app;
+GThread *mqttThread;
 GtkLabel *gridVoltage, *gridFreq, *inverterVoltage, *inverterFreq;
 GtkLabel *pvPwrDisp, *pvVoltDisp, *mpptTempDisp, *invTempDisp;
 GtkLabel *battVolts, *battCurrent, *InverterMode;
@@ -32,8 +34,8 @@ gboolean windowDelete(__attribute__((unused)) GtkWidget *widget,
                       __attribute__((unused)) gpointer data)
 {
     g_print("%s called.\n", __func__ );
-    quit_mainMQTT();
-    //g_application_quit (data);
+    //quit_mainMQTT();
+    gtk_widget_destroy(widget);
     return FALSE; // Returning TRUE stops the window being deleted.
                   // Returning FALSE allows deletion.
 }
@@ -41,6 +43,7 @@ gboolean windowDelete(__attribute__((unused)) GtkWidget *widget,
 void quitButtonClicked (__attribute__((unused))GtkWidget* widget, gpointer data)
 {
     g_print("Quit Clicked\n");
+    //quit_mainMQTT();
     g_application_quit(G_APPLICATION(data));
 }
 // Widget and app initialization
@@ -88,35 +91,40 @@ static void activate (GtkApplication* app, gpointer user_data)
     gtk_builder_connect_signals(builder, NULL);
     g_object_unref(G_OBJECT(builder));
     //////////////// begin CSS
-    GError *error;
+    GError *gtk_error;
     GtkCssProvider *provider = gtk_css_provider_new ();
     GdkDisplay *display = gdk_display_get_default ();	  
     GdkScreen *screen = gdk_display_get_default_screen (display);
+    #ifdef __arm__
+    gtk_window_set_hide_titlebar_when_maximized(GTK_WINDOW(window), TRUE);
+    gtk_window_maximize (GTK_WINDOW(window));
+    #endif
     //context = gtk_widget_get_style_context(window);
     gtk_style_context_add_provider_for_screen (screen,
                                     GTK_STYLE_PROVIDER(provider),
                                     GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    if (!gtk_css_provider_load_from_path (provider, "./SolarDashboard.css", &error))
+    gtk_error= NULL;
+    gtk_css_provider_load_from_path (provider, "./SolarDashboard.css", &gtk_error);
+    if (gtk_error != NULL)
     {
-        perror( "load css failed" );
-        g_free( error );
-        return;
+        g_printerr("Error in loading CSS file: %s", gtk_error->message);
+      
     }
-    //g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK(destroy), app);
+    g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK(quitButtonClicked), app);
     g_signal_connect(G_OBJECT(quit_button), "clicked", G_CALLBACK(quitButtonClicked), app);
     //////////////////// end CSS
-    // gtk_widget_show_all(window); //not needed as  marked visible in xml
-    g_thread_new("mqtt_worker", (GThreadFunc )mqtt_main, NULL);
+    gtk_widget_show(window); //not needed as  marked visible in xml
+    mqttThread = g_thread_new("mqtt_worker", (GThreadFunc )mqtt_main, NULL);
     g_print("\n started the Worker thread\n");
-    g_idle_add((GSourceFunc)time_handler, (gpointer)user_data);
+    //add a worer function with 100 milliseconds, to process the MQTT messages
+    g_timeout_add(10,(GSourceFunc)time_handler, (gpointer)user_data);
     return ;
 }
 
 int main(int argc, char *argv[]){
-  GtkApplication *app;
   int status;
   //Open the message queue for reading
-  mqd_t mqd = mq_open("/SOLARMON_MQ", O_CREAT | O_RDONLY | O_NONBLOCK, 0600, NULL);
+  mqd_t mqd = mq_open("/SOLARMON_MQ", O_CREAT | O_RDONLY | O_NONBLOCK | O_TRUNC, 0600, NULL);
   assert(mqd != -1);
   //gtk_init(&argc, &argv);
   app = gtk_application_new ("in.vuaie.solardashboard", G_APPLICATION_FLAGS_NONE);

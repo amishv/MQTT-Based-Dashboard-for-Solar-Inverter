@@ -3,7 +3,7 @@
 #include <gtk/gtk.h>
 #define ANGLE_RAD(x) (M_PI / 180.) * x
 #define Y_OFFSET 0.0 // Offset in pixels to height from the base
-GtkAdjustment *pvPwrVal, *pvVoltVal, *mpptTempVal, *invTempVal;
+extern GtkAdjustment *pvPwrVal, *pvVoltVal, *mpptTempVal, *invTempVal;
 // GtkScale *pvPwrScale;
 //  This just causes the drawing area to be redrawn when the slider is moved.
 //  user_data is a pointer to drawingarea1
