@@ -3,6 +3,8 @@
 ![Dashboard Image](https://github.com/amishv/MQTT-Based-Dashboard-for-Solar-Inverter/blob/main/SolarDashboard.png)
 A dashboard to montior voltronic brand of solar inverters using the MQTT protocol. This is a companion application to the MQTT based reader for Voltronic Solar inverter https://github.com/amishv/Voltronics_Solar_protocol18 following Home assistant https://www.home-assistant.io/ MQTT sensors.
 
+Paho MQTT client https://github.com/eclipse/paho.mqtt.c is needed to compile the source.
+
 Hosting here for version control with MIT licence.
 
 steps to build
